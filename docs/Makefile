@@ -4,7 +4,7 @@ FLAGS = -shell-escape
 CC = pdflatex
 SHIT = *.aux *.log *.out *.toc *.bbl *.blg
 
-# all: pdf
+all: bib
 
 $(PDF) : $(MAIN).tex *.tex report/*.tex
 	make resurrect
