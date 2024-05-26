@@ -311,6 +311,13 @@ content & строка & не пустое значение \\ \hline
 
 \subsection{Описание ролевой модели}
 
+В разрабатываемой базе данных будет использоваться следующая ролевая модель:
+\begin{enumerate}
+    \item Пользователь --- имеет права доступа INSERT к таблицам TermAnnotation, TermAnnotationParts и StructAnnotation, права доступа SELECT к таблицам AnnotationTask, Sentence и Token.
+    \item Модератор --- имеет все права доступа пользователя, а также INSERT к таблице AnnotationTask, UPDATE к таблицам AnnotationTask, Term-Annotation и StructAnnotation.
+    \item Администратор --- имеет все права доступа ко всем таблицам.
+\end{enumerate}
+
 \subsection{Вывод}
 
 % trust_level +2 -1
