@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:alpine
+    volumes:
+      # - ./postgresql_data:/var/lib/postgresql/data
+      - ./sql:/sql
+      - ./csv:/csv
+    environment:
+      TZ: "Europe/Moscow"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hotdog123
+      POSTGRES_DB: db
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      # Mapping 8001 localhost port to port 5432 of container
+      - 8001:5432
+    restart: unless-stopped

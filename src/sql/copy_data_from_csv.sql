@@ -1,0 +1,10 @@
+COPY user_data FROM '/csv/user_data.csv' DELIMITER ',' CSV HEADER;
+COPY document FROM '/csv/document.csv' DELIMITER ',' CSV HEADER;
+COPY author FROM '/csv/author.csv' DELIMITER ',' CSV HEADER;
+COPY document_author FROM '/csv/document_author.csv' DELIMITER ',' CSV HEADER;
+COPY annotation_task FROM '/csv/annotation_task.csv' DELIMITER ',' CSV HEADER;
+COPY struct_annotation FROM '/csv/struct_annotation.csv' DELIMITER ',' CSV HEADER;
+COPY term_annotation FROM '/csv/term_annotation.csv' DELIMITER ',' CSV HEADER;
+COPY term_annotation_part FROM '/csv/term_annotation_part.csv' DELIMITER ',' CSV HEADER;
+COPY sentence FROM '/csv/sentence.csv' DELIMITER ',' CSV HEADER;
+COPY token FROM '/csv/token.csv' DELIMITER ',' CSV HEADER;

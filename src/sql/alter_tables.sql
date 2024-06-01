@@ -28,6 +28,12 @@ ALTER TABLE document
     REFERENCES user_data(id),
     ALTER COLUMN upload_date SET NOT NULL;
 
+ALTER TABLE author
+    ALTER COLUMN id SET NOT NULL,
+    ADD CONSTRAINT pk_author_id
+    PRIMARY KEY (id),
+    ALTER COLUMN creation_date SET NOT NULL;
+
 ALTER TABLE document_author
     ALTER COLUMN doc_id SET NOT NULL,
     ADD CONSTRAINT fk_document_author_doc_id
@@ -38,12 +44,6 @@ ALTER TABLE document_author
     ADD CONSTRAINT fk_document_author_author_id
     FOREIGN KEY (author_id)
     REFERENCES author(id);
-
-ALTER TABLE author
-    ALTER COLUMN id SET NOT NULL,
-    ADD CONSTRAINT pk_author_id
-    PRIMARY KEY (id),
-    ALTER COLUMN creation_date SET NOT NULL;
 
 ALTER TABLE annotation_task
     ALTER COLUMN id SET NOT NULL,
@@ -60,7 +60,7 @@ ALTER TABLE annotation_task
     ADD CONSTRAINT fk_annotation_task_created_by
     FOREIGN KEY (created_by)
     REFERENCES user_data(id),
-    ALTER COLUMN creatoin_date SET NOT NULL,
+    ALTER COLUMN creation_date SET NOT NULL,
     ALTER COLUMN last_update_date SET NOT NULL;
 
 ALTER TABLE struct_annotation
