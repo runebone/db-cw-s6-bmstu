@@ -11,12 +11,8 @@
 \usepackage{graphicx}
 \usepackage{multirow}
 
-% \usepackage{tikz}
-% \usetikzlibrary{shapes, shapes.geometric, arrows, arrows.meta, positioning}
-
 \usepackage{caption}
 \captionsetup{labelsep=endash}
-% \captionsetup[lstlisting]{justification=raggedright,singlelinecheck=off}
 \captionsetup[figure]{name={Рисунок}}
 
 \usepackage{amsmath}
@@ -49,17 +45,6 @@
 \titleformat{\subsubsection}[hang]
 {\bfseries\large}{\thesubsubsection}{1em}{}
 \titlespacing\subsubsection{\parindent}{*2}{*2}
-
-% This works fine instead
-% \usepackage{etoolbox}
-% \patchcmd{\section}{\normalfont}{\centering\normalfont}{}{}
-% \patchcmd{\section}{\Lare}{\centering\large}{}{}
-% \patchcmd{\section}{\Large}{\large}{}{}
-% \patchcmd{\subsubsection}{\normalsize}{\large}{}{}
-
-% \patchcmd{\section}{\bfseries}{\bfseries\hspace{1em}}{}{}
-% \patchcmd{\subsection}{\bfseries}{\bfseries\hspace{1em}}{}{}
-% \patchcmd{\subsubsection}{\bfseries}{\bfseries\hspace{1em}}{}{}
 
 \usepackage{url}
 
@@ -111,7 +96,7 @@
 % Для листинга кода:
 \lstset{
 	basicstyle=\small\ttfamily,			% размер и начертание шрифта для подсветки кода
-	language=C++,   					% выбор языка для подсветки	
+	language=SQL,   					% выбор языка для подсветки	
 	numbers=left,						% где поставить нумерацию строк (слева\справа)
 	numbersep=5pt,
 	% stepnumber=1,						% размер шага между двумя номерами строк
@@ -129,10 +114,27 @@
 	numberstyle=,%\tiny,					    % размер шрифта для номеров строк
 	keywordstyle=\color{blue},
 	stringstyle=\color{red!90!black}, % color of text in ""
-	commentstyle=\color{green!50!black}
+	commentstyle=\color{green!50!black},
+    morekeywords={TO,WITH,SUPERUSER,PRIVILEGES,TABLES,SCHEMA,USER,PASSWORD,public,REFERENCES,UUID,IF}
 }
-\lstset{
- morekeywords={size_t, likely}
+
+\lstdefinelanguage{Golang}%
+  {morekeywords=[1]{package,import,func,type,struct,return,defer,panic,%
+     recover,select,var,const,iota,},%
+   morekeywords=[2]{string,uint,uint8,uint16,uint32,uint64,int,int8,int16,%
+     int32,int64,bool,float32,float64,complex64,complex128,byte,rune,uintptr,%
+     error,interface},%
+   morekeywords=[3]{map,slice,make,new,nil,len,cap,copy,close,true,false,%
+     delete,append,real,imag,complex,chan,},%
+   morekeywords=[4]{for,break,continue,range,go,goto,switch,case,fallthrough,if,%
+     else,default,},%
+   morekeywords=[5]{Println,Printf,Error,Print,},%
+   sensitive=true,%
+   morecomment=[l]{//},%
+   morecomment=[s]{/*}{*/},%
+   morestring=[b]',%
+   morestring=[b]",%
+   morestring=[s]{`}{`},%
 }
 
 \lstset{
@@ -205,66 +207,6 @@
 	{Я}{{\selectfont\char223}}1
 }
 
-% \lstset{
-% 	basicstyle=\footnotesize\ttfamily,
-% 	language=[Sharp]C, % Или другой ваш язык -- см. документацию пакета
-%     captionpos=t,
-% 	commentstyle=\color{comment},
-% 	numbers=left,
-% 	numberstyle=\tiny\color{plain},
-% 	numbersep=5pt,
-% 	tabsize=4,
-% 	extendedchars=\true,
-% 	breaklines=true,
-% 	keywordstyle=\color{blue},
-% 	frame=b,
-% 	stringstyle=\ttfamily\color{string}\ttfamily,
-% 	showspaces=false,
-% 	showtabs=false,
-% 	xleftmargin=17pt,
-% 	framexleftmargin=17pt,
-% 	framexrightmargin=5pt,
-% 	framexbottommargin=4pt,
-% 	showstringspaces=false,
-% 	inputencoding=utf8x,
-% 	keepspaces=true
-% }
-
-
-% \DeclareCaptionLabelSeparator{line}{\ --\ }
-% \DeclareCaptionFont{white}{\color{white}}
-% \DeclareCaptionFormat{listing}{\colorbox[cmyk]{0.43,0.35,0.35,0.01}{\parbox{\textwidth}{\hspace{15pt}#1#2#3}}}
-% \captionsetup[lstlisting]{
-% 	format=listing,
-% 	labelfont=white,
-% 	textfont=white,
-% 	singlelinecheck=false,
-% 	margin=0pt,
-% 	font={bf,footnotesize},
-% 	labelsep=line
-% }
-
-% \usepackage[cache=false, newfloat]{minted}
-% \newenvironment{code}{\captionsetup{type=listing, singlelinecheck=false, labelsep=endash}}{}
-% \SetupFloatingEnvironment{listing}{name=Листинг}
-
-% % Для квадратных скобок
-% \usepackage{array}
-% \DeclareMathOperator{\rank}{rank}
-% \makeatletter
-% \newenvironment{sqcases}{%
-% 	\matrix@check\sqcases\env@sqcases
-% }{%
-% 	\endarray\right.%
-% }
-% \def\env@sqcases{%
-% 	\let\@ifnextchar\new@ifnextchar
-% 	\left\lbrack
-% 	\def\arraystretch{1.2}%
-% 	\array{@{}l@{\quad}l@{}}%
-% }
-% \makeatother
-
 % Работа с изображениями и таблицами; переопределение названий по ГОСТу
 \usepackage{caption}
 \captionsetup[figure]{name={Рисунок},labelsep=endash}
@@ -283,11 +225,6 @@
 \makeatletter
 \renewcommand\@biblabel[1]{#1.} % [1] -> 1. in bibliography
 \makeatother
-
-% \usepackage{color}
-% \usepackage[cache=false, newfloat]{minted}
-% \newenvironment{code}{\captionsetup{type=listing, singlelinecheck=false, labelsep=endash}}{}
-% \SetupFloatingEnvironment{listing}{name=Листинг}
 
 \usepackage{float} % Place figures anywhere you want; ignore floating
 
