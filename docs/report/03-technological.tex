@@ -2,23 +2,278 @@
 
 \subsection{Выбор средств реализации}
 
-% Обоснованный выбор БД, СУБД и приложения
+\subsection*{Выбор СУБД}
+
+Для реализации проектируемой базы данных подойдет любая реляционная СУБД с поддержкой ролевой модели.
+В настоящей работе была выбрана PostgreSQL~\cite{psql} по следующим причинам:
+\begin{itemize}
+    \item открытый исходный код;
+    \item поддержка полнотекстового поиска~\cite{psql};
+    \item имеется опыт работы с данной СУБД.
+\end{itemize}
+
+\subsection*{Выбор языка программирования}
+
+Для реализации приложения к проектируемое БД был выбран язык программирования Go~\cite{go} по следующим причинам:
+\begin{itemize}
+    \item простой синтаксис;
+    \item быстрая компиляция~\cite{go};
+    \item имеется стандартная библиотека для работы с SQL базами данных~\cite{gosql}.
+\end{itemize}
+
+\subsection*{Выбор среды разработки}
+
+В качестве среды разработки был выбран Neovim~\cite{nvim} по следующим причинам:
+\begin{itemize}
+    \item данный текстовый редактор позволяет редактировать файлы с исходным кодом программы;
+    \item быстрая и удобная навигация по файлам проекта;
+    \item есть опыт использования данного текстового редактора.
+\end{itemize}
 
 \subsection{Описание реализаций}
 
 \subsubsection{Сущности базы данных}
 
+В листингах \ref{lst:table:user} -- \ref{lst:table:token} приведены реализованные сущности базы данных.
+
+\begin{code}
+    \begin{lstinputlisting}[
+            label={lst:table:user},
+            caption={Создание User},
+            firstline=2,
+            lastline=10,
+        ]{../src/sql/create_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Создание Document},
+            firstline=13,
+            lastline=21,
+        ]{../src/sql/create_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Создание DocumentAuthor},
+            firstline=24,
+            lastline=27,
+        ]{../src/sql/create_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Создание Author},
+            firstline=30,
+            lastline=37,
+        ]{../src/sql/create_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Создание AnnotationTask},
+            firstline=40,
+            lastline=48,
+        ]{../src/sql/create_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Создание StructAnnotation},
+            firstline=51,
+            lastline=59,
+        ]{../src/sql/create_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Создание TermAnnotation},
+            firstline=62,
+            lastline=69,
+        ]{../src/sql/create_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Создание TermAnnotationPart},
+            firstline=72,
+            lastline=81,
+        ]{../src/sql/create_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Создание Sentence},
+            firstline=84,
+            lastline=88,
+        ]{../src/sql/create_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            label={lst:table:token},
+            caption={Создание Token},
+            firstline=91,
+            lastline=96,
+        ]{../src/sql/create_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
 \subsubsection{Ограничения целостности базы данных}
+
+В листингах \ref{lst:cons:user} -- \ref{lst:cons:token} приведены реализованные ограничения целостности базы данных.
+
+\begin{code}
+    \begin{lstinputlisting}[
+            label={lst:cons:user},
+            caption={Ограничения User},
+            firstline=1,
+            lastline=13,
+        ]{../src/sql/alter_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Ограничения Document},
+            firstline=15,
+            lastline=29,
+        ]{../src/sql/alter_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Ограничения DocumentAuthor},
+            firstline=37,
+            lastline=46,
+        ]{../src/sql/alter_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Ограничения Author},
+            firstline=31,
+            lastline=35,
+        ]{../src/sql/alter_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Ограничения AnnotationTask},
+            firstline=48,
+            lastline=64,
+        ]{../src/sql/alter_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Ограничения StructAnnotation},
+            firstline=66,
+            lastline=83,
+        ]{../src/sql/alter_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Ограничения TermAnnotation},
+            firstline=85,
+            lastline=103,
+        ]{../src/sql/alter_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Ограничения TermAnnotationPart},
+            firstline=105,
+            lastline=117,
+        ]{../src/sql/alter_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            caption={Ограничения Sentence},
+            firstline=119,
+            lastline=125,
+        ]{../src/sql/alter_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            label={lst:cons:token},
+            caption={Ограничения Token},
+            firstline=127,
+            lastline=133,
+        ]{../src/sql/alter_tables.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\newpage
 
 \subsubsection{Ролевая модель на уровне базы данных}
 
+В листинге \ref{lst:roles} приведена реализованная ролевая модель на уровне базы данных.
+
+\begin{code}
+    \begin{lstinputlisting}[
+            label={lst:roles},
+            caption={Создание ролей и пользователей},
+            firstline=1,
+            lastline=25,
+        ]{../src/sql/create_roles.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\newpage
+
 \subsubsection{Функции, процедуры и триггеры}
 
-% В формате схемы
+На рисунке \ref{fig:trig-impl} представлена реализация функции триггера, отвечающего за пересчет уровня доверия пользователей.
 
-\subsubsection{Тестирование}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{diag/tech-trig-v4.pdf}
+	\caption{Схема реализации алгоритма работы триггера, отвечающего за пересчет уровня доверия пользователей на языке plpgsql}
+	\label{fig:trig-impl}
+\end{figure}
+
+\subsubsection{Тестирование функций}
 
 % Описание методов тестирования и тестовых кейсов для всех разработанных на стороне базы данных функций;
+
+В листингах \ref{lst:test:trig:approved}, \ref{lst:test:trig:rejected} продемонстрирована работоспособность реализованного триггера.
+
+\begin{code}
+    \begin{lstinputlisting}[
+            label={lst:test:trig:approved},
+            caption={Увеличение уровня доверия пользователя при одобрении его разметки},
+        ]{lst/trig-approved.sql}
+    \end{lstinputlisting}
+\end{code}
+
+\begin{code}
+    \begin{lstinputlisting}[
+            label={lst:test:trig:rejected},
+            caption={Уменьшение уровня доверия пользователя при отклонении его разметки},
+        ]{lst/trig-rejected.sql}
+    \end{lstinputlisting}
+\end{code}
 
 \subsubsection{Интерфейс доступа к базе данных}
 

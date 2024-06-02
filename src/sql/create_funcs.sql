@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION adjust_trust_level()
 RETURNS TRIGGER AS $$
 BEGIN
-    IF NEW.status <> OLD.status THEN
+    IF OLD.status IS NULL THEN
         IF NEW.status = 'approved' THEN
             UPDATE user_data
             SET trust_level = trust_level + 5

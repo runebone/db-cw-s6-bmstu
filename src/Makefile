@@ -1,5 +1,6 @@
 all:
-	docker exec -it src-db-1 psql -U postgres -d db
+	docker exec -it src-db-1 psql -U admin -d db
+	# docker exec -it src-db-1 psql -U postgres -d db
 
 .PHONY: bash
 bash:

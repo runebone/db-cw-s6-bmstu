@@ -14,6 +14,7 @@ GRANT UPDATE ON TABLE term_annotation   TO moderator_role;
 GRANT UPDATE ON TABLE struct_annotation TO moderator_role;
 
 CREATE ROLE admin_role WITH SUPERUSER;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO admin_role;
 
 CREATE USER dbusr WITH PASSWORD 'dbusr';
 CREATE USER moder WITH PASSWORD 'moder';

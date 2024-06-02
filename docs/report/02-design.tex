@@ -16,7 +16,7 @@
 
 \subsection{Описание сущностей}
 
-В данном подразделе будут описаны десять сущностей проектируемой базы данных: User, Document, DocumentAuthor, Author, AnnotationTask, Struct-Annotation, TermAnnotation, TermAnnotationParts, Sentence, Token.
+В данном подразделе будут описаны десять сущностей проектируемой базы данных: User, Document, DocumentAuthor, Author, AnnotationTask, Struct-Annotation, TermAnnotation, TermAnnotationPart, Sentence, Token.
 
 \subsubsection*{User}
 
@@ -102,9 +102,9 @@
     \item done\_by --- ссылка на пользователя, выполнившего разметку.
 \end{itemize}
 
-\subsubsection*{TermAnnotationParts}
+\subsubsection*{TermAnnotationPart}
 
-Сущность TermAnnotationParts формализует составляющие терминологической разметки --- определяет границы терминов, входящих в разметку, и устанавливает их соответствие в оригинальном документе и его переводе:
+Сущность TermAnnotationPart формализует составляющие терминологической разметки --- определяет границы терминов, входящих в разметку, и устанавливает их соответствие в оригинальном документе и его переводе:
 \begin{itemize}
     \item annot\_id --- ссылка на идентификатор терминологической разметки;
     \item part\_no --- номер части, термина, входящего в терминологическую разметку;
@@ -253,7 +253,7 @@ done\_by & UUID & внешний ключ на поле id таблицы User, 
 
 \begin{table}[H]
 \centering
-\caption{Ограничение целостности TermAnnotationParts}
+\caption{Ограничение целостности TermAnnotationPart}
 \begin{tabular}{|m{5cm}|m{3cm}|m{6cm}|}
 \hline
 \textbf{Поле} & \textbf{Тип} & \textbf{Ограничение} \\ \hline
@@ -315,7 +315,7 @@ content & строка & не пустое значение \\ \hline
 
 В разрабатываемой базе данных будет использоваться следующая ролевая модель:
 \begin{enumerate}
-    \item Пользователь --- имеет права доступа INSERT к таблицам TermAnnotation, TermAnnotationParts и StructAnnotation, права доступа SELECT к таблицам AnnotationTask, Sentence и Token.
+    \item Пользователь --- имеет права доступа INSERT к таблицам TermAnnotation, TermAnnotationPart и StructAnnotation, права доступа SELECT к таблицам AnnotationTask, Sentence и Token.
     \item Модератор --- имеет все права доступа пользователя, а также INSERT к таблице AnnotationTask, UPDATE к таблицам AnnotationTask, Term-Annotation и StructAnnotation.
     \item Администратор --- имеет все права доступа ко всем таблицам.
 \end{enumerate}
