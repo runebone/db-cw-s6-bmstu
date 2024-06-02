@@ -8,7 +8,7 @@ import (
 )
 
 type User struct {
-	Id             uuid.UUID
+	ID             uuid.UUID
 	Username       Username
 	Email          Email
 	PasswordHash   Password
@@ -22,12 +22,12 @@ type Password string
 
 // TODO error handling?
 func NewUser(username Username, email Email, password Password) *User {
-	password_hash, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	passwordHash, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	u := &User{
-		Id:           uuid.New(),
+		ID:           uuid.New(),
 		Username:     username,
 		Email:        email,
-		PasswordHash: Password(password_hash),
+		PasswordHash: Password(passwordHash),
 		CreationDate: time.Now(),
 	}
 	return u

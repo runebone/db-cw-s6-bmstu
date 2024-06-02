@@ -7,23 +7,23 @@ import (
 )
 
 type Document struct {
-	Id         uuid.UUID
+	ID         uuid.UUID
 	Url        Url
 	Title      string
 	Lang       Lang
-	OrigDocId  uuid.UUID
+	OrigDocID  uuid.UUID
 	UploadedBy uuid.UUID
 	UploadDate time.Time
 }
 
 type Sentence struct {
-	DocId   uuid.UUID
+	DocID   uuid.UUID
 	SentNo  int
 	Content string
 }
 
 type Token struct {
-	DocId   uuid.UUID
+	DocID   uuid.UUID
 	SentNo  int
 	TokenNo int
 	Content string
@@ -32,33 +32,33 @@ type Token struct {
 type Url string
 type Lang string
 
-func NewDocument(url Url, title string, lang Lang, orig_doc_id uuid.UUID, uploaded_by uuid.UUID) *Document {
+func NewDocument(url Url, title string, lang Lang, origDocID uuid.UUID, uploadedBy uuid.UUID) *Document {
 	d := &Document{
-		Id:         uuid.New(),
+		ID:         uuid.New(),
 		Url:        url,
 		Title:      title,
 		Lang:       lang,
-		OrigDocId:  orig_doc_id,
-		UploadedBy: uploaded_by,
+		OrigDocID:  origDocID,
+		UploadedBy: uploadedBy,
 		UploadDate: time.Now(),
 	}
 	return d
 }
 
-func NewSentence(doc_id uuid.UUID, sent_no int, content string) *Sentence {
+func NewSentence(docID uuid.UUID, sentNo int, content string) *Sentence {
 	s := &Sentence{
-		DocId:   doc_id,
-		SentNo:  sent_no,
+		DocID:   docID,
+		SentNo:  sentNo,
 		Content: content,
 	}
 	return s
 }
 
-func NewToken(doc_id uuid.UUID, sent_no int, token_no int, content string) *Token {
+func NewToken(docID uuid.UUID, sentNo int, tokenNo int, content string) *Token {
 	t := &Token{
-		DocId:   doc_id,
-		SentNo:  sent_no,
-		TokenNo: token_no,
+		DocID:   docID,
+		SentNo:  sentNo,
+		TokenNo: tokenNo,
 		Content: content,
 	}
 	return t

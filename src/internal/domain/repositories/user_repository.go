@@ -3,6 +3,7 @@ package repositories
 import (
 	"database/sql"
 
+	"github.com/google/uuid"
 	"github.com/runebone/db-cw-s6-bmstu/internal/domain/models"
 )
 
@@ -20,7 +21,7 @@ func (r *UserRepository) CreateUser(u models.User) error {
 		(id, username, email, pwd_hash, creation_date, last_update_date) 
 		VALUES ($1, $2, $3, $4, $5, $6)
 	`
-	_, err := r.DB.Exec(query, u.Id, u.Username, u.Email, u.PasswordHash, u.CreationDate, u.LastUpdateDate)
+	_, err := r.DB.Exec(query, u.ID, u.Username, u.Email, u.PasswordHash, u.CreationDate, u.LastUpdateDate)
 	return err
 }
 
@@ -33,7 +34,23 @@ func (r *UserRepository) GetUserByUsername(username models.Username) (models.Use
 		WHERE username = $1
 	`
 	row := r.DB.QueryRow(query, username)
-	err := row.Scan(&u.Id, &u.Username, &u.Email, &u.PasswordHash, &u.CreationDate, &u.LastUpdateDate)
+	err := row.Scan(&u.ID, &u.Username, &u.Email, &u.PasswordHash, &u.CreationDate, &u.LastUpdateDate)
+	if err != nil {
+		return models.User{}, err
+	}
+	return u, nil
+}
+
+func (r *UserRepository) GetUserByID(id uuid.UUID) (models.User, error) {
+	var u models.User
+	query := `
+		SELECT
+		id, username, email, pwd_hash, creation_date, last_update_date
+		FROM user_data
+		WHERE id = $1
+	`
+	row := r.DB.QueryRow(query, id)
+	err := row.Scan(&u.ID, &u.Username, &u.Email, &u.PasswordHash, &u.CreationDate, &u.LastUpdateDate)
 	if err != nil {
 		return models.User{}, err
 	}

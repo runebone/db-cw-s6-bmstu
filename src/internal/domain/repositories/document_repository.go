@@ -21,7 +21,7 @@ func (r *DocumentRepository) CreateDocument(d models.Document) error {
 		(id, url, title, lang, orig_doc_id, uploaded_by, upload_date)
 		VALUES ($1, $2, $3, $4, $5, $6, $7)
 	`
-	_, err := r.DB.Exec(query, d.Id, d.Url, d.Title, d.OrigDocId, d.UploadedBy, d.UploadDate)
+	_, err := r.DB.Exec(query, d.ID, d.Url, d.Title, d.OrigDocID, d.UploadedBy, d.UploadDate)
 	return err
 }
 
@@ -32,7 +32,7 @@ func (r *DocumentRepository) CreateSentence(s models.Sentence) error {
 		(doc_id, sent_no, content)
 		VALUES ($1, $2, $3)
 	`
-	_, err := r.DB.Exec(query, s.DocId, s.SentNo, s.Content)
+	_, err := r.DB.Exec(query, s.DocID, s.SentNo, s.Content)
 	return err
 }
 
@@ -42,7 +42,7 @@ func (r *DocumentRepository) CreateToken(t models.Token) error {
 		(doc_id, sent_no, token_no, content)
 		VALUES ($1, $2, $3, $4)
 	`
-	_, err := r.DB.Exec(query, t.DocId, t.SentNo, t.TokenNo, t.Content)
+	_, err := r.DB.Exec(query, t.DocID, t.SentNo, t.TokenNo, t.Content)
 	return err
 }
 

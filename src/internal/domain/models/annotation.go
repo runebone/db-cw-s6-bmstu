@@ -7,9 +7,9 @@ import (
 )
 
 type AnnotationTask struct {
-	Id             uuid.UUID
-	OrigDocId      uuid.UUID
-	TransDocId     uuid.UUID
+	ID             uuid.UUID
+	OrigDocID      uuid.UUID
+	TransDocID     uuid.UUID
 	Description    string
 	CreatedBy      uuid.UUID
 	CreationDate   time.Time
@@ -17,9 +17,9 @@ type AnnotationTask struct {
 }
 
 type StructAnnotation struct {
-	Id        uuid.UUID
-	TaskId    uuid.UUID
-	OrigDocId uuid.UUID
+	ID        uuid.UUID
+	TaskID    uuid.UUID
+	OrigDocID uuid.UUID
 	BegSentNo int
 	EndSentNo int
 	Status    Status
@@ -29,16 +29,16 @@ type StructAnnotation struct {
 type Status string
 
 type TermAnnotation struct {
-	Id         uuid.UUID
-	TaskId     uuid.UUID
-	OrigDocId  uuid.UUID
-	TransDocId uuid.UUID
+	ID         uuid.UUID
+	TaskID     uuid.UUID
+	OrigDocID  uuid.UUID
+	TransDocID uuid.UUID
 	Status     Status
 	DoneBy     uuid.UUID
 }
 
 type TermAnnotationPart struct {
-	AnnotId         uuid.UUID
+	AnnotID         uuid.UUID
 	PartNo          int
 	OrigSentNo      int
 	TransSentNo     int
@@ -48,54 +48,54 @@ type TermAnnotationPart struct {
 	EndTransTokenNo int
 }
 
-func NewAnnotationTask(orig_doc_id, trans_doc_id uuid.UUID, desc string, created_by uuid.UUID) *AnnotationTask {
+func NewAnnotationTask(origDocID, transDocID uuid.UUID, desc string, createdBy uuid.UUID) *AnnotationTask {
 	at := &AnnotationTask{
-		Id:             uuid.New(),
-		OrigDocId:      orig_doc_id,
-		TransDocId:     trans_doc_id,
+		ID:             uuid.New(),
+		OrigDocID:      origDocID,
+		TransDocID:     transDocID,
 		Description:    desc,
-		CreatedBy:      created_by,
+		CreatedBy:      createdBy,
 		CreationDate:   time.Now(),
 		LastUpdateDate: time.Now(),
 	}
 	return at
 }
 
-func NewStructAnnotation(task_id, orig_doc_id uuid.UUID, beg_sent_no, end_sent_no int, status Status, done_by uuid.UUID) *StructAnnotation {
+func NewStructAnnotation(taskID, origDocID uuid.UUID, begSentNo, endSentNo int, status Status, doneBy uuid.UUID) *StructAnnotation {
 	sa := &StructAnnotation{
-		Id:        uuid.New(),
-		TaskId:    task_id,
-		OrigDocId: orig_doc_id,
-		BegSentNo: beg_sent_no,
-		EndSentNo: end_sent_no,
+		ID:        uuid.New(),
+		TaskID:    taskID,
+		OrigDocID: origDocID,
+		BegSentNo: begSentNo,
+		EndSentNo: endSentNo,
 		Status:    status,
-		DoneBy:    done_by,
+		DoneBy:    doneBy,
 	}
 	return sa
 }
 
-func NewTermAnnotation(task_id, orig_doc_id, trans_doc_id uuid.UUID, status Status, done_by uuid.UUID) *TermAnnotation {
+func NewTermAnnotation(taskID, origDocID, transDocID uuid.UUID, status Status, doneBy uuid.UUID) *TermAnnotation {
 	ta := &TermAnnotation{
-		Id:         uuid.New(),
-		TaskId:     task_id,
-		OrigDocId:  orig_doc_id,
-		TransDocId: trans_doc_id,
+		ID:         uuid.New(),
+		TaskID:     taskID,
+		OrigDocID:  origDocID,
+		TransDocID: transDocID,
 		Status:     status,
-		DoneBy:     done_by,
+		DoneBy:     doneBy,
 	}
 	return ta
 }
 
-func NewTermAnnotationPart(annot_id uuid.UUID, part_no, orig_sent_no, trans_sent_no, beg_orig_token_no, end_orig_token_no, beg_trans_token_no, end_trans_token_no int) *TermAnnotationPart {
+func NewTermAnnotationPart(annotID uuid.UUID, partNo, origSentNo, transSentNo, begOrigTokenNo, endOrigTokenNo, begTransTokenNo, endTransTokenNo int) *TermAnnotationPart {
 	chicken := &TermAnnotationPart{
-		AnnotId:         annot_id,
-		PartNo:          part_no,
-		OrigSentNo:      orig_sent_no,
-		TransSentNo:     trans_sent_no,
-		BegOrigTokenNo:  beg_orig_token_no,
-		EndOrigTokenNo:  end_orig_token_no,
-		BegTransTokenNo: beg_trans_token_no,
-		EndTransTokenNo: end_trans_token_no,
+		AnnotID:         annotID,
+		PartNo:          partNo,
+		OrigSentNo:      origSentNo,
+		TransSentNo:     transSentNo,
+		BegOrigTokenNo:  begOrigTokenNo,
+		EndOrigTokenNo:  endOrigTokenNo,
+		BegTransTokenNo: begTransTokenNo,
+		EndTransTokenNo: endTransTokenNo,
 	}
 	return chicken
 }
