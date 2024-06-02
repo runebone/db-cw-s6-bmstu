@@ -4,7 +4,7 @@ import (
 	"database/sql"
 
 	"github.com/google/uuid"
-	"github.com/runebone/db-cw-s6-bmstu/internal/domain/models"
+	m "github.com/runebone/db-cw-s6-bmstu/internal/domain/models"
 )
 
 type UserRepository struct {
@@ -15,7 +15,7 @@ func NewUserRepository(db *sql.DB) *UserRepository {
 	return &UserRepository{DB: db}
 }
 
-func (r *UserRepository) CreateUser(u models.User) error {
+func (r *UserRepository) CreateUser(u *m.User) error {
 	query := `
 		INSERT INTO user_data
 		(id, username, email, pwd_hash, creation_date, last_update_date) 
@@ -25,8 +25,8 @@ func (r *UserRepository) CreateUser(u models.User) error {
 	return err
 }
 
-func (r *UserRepository) GetUserByUsername(username models.Username) (models.User, error) {
-	var u models.User
+func (r *UserRepository) GetUserByUsername(username m.Username) (*m.User, error) {
+	var u *m.User
 	query := `
 		SELECT
 		id, username, email, pwd_hash, creation_date, last_update_date
@@ -36,13 +36,13 @@ func (r *UserRepository) GetUserByUsername(username models.Username) (models.Use
 	row := r.DB.QueryRow(query, username)
 	err := row.Scan(&u.ID, &u.Username, &u.Email, &u.PasswordHash, &u.CreationDate, &u.LastUpdateDate)
 	if err != nil {
-		return models.User{}, err
+		return &m.User{}, err
 	}
 	return u, nil
 }
 
-func (r *UserRepository) GetUserByID(id uuid.UUID) (models.User, error) {
-	var u models.User
+func (r *UserRepository) GetUserByID(id uuid.UUID) (*m.User, error) {
+	var u *m.User
 	query := `
 		SELECT
 		id, username, email, pwd_hash, creation_date, last_update_date
@@ -52,7 +52,7 @@ func (r *UserRepository) GetUserByID(id uuid.UUID) (models.User, error) {
 	row := r.DB.QueryRow(query, id)
 	err := row.Scan(&u.ID, &u.Username, &u.Email, &u.PasswordHash, &u.CreationDate, &u.LastUpdateDate)
 	if err != nil {
-		return models.User{}, err
+		return &m.User{}, err
 	}
 	return u, nil
 }

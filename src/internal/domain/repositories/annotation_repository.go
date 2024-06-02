@@ -3,7 +3,7 @@ package repositories
 import (
 	"database/sql"
 
-	"github.com/runebone/db-cw-s6-bmstu/internal/domain/models"
+	m "github.com/runebone/db-cw-s6-bmstu/internal/domain/models"
 )
 
 type AnnotationRepository struct {
@@ -14,7 +14,7 @@ func NewAnnotationRepository(db *sql.DB) *AnnotationRepository {
 	return &AnnotationRepository{DB: db}
 }
 
-func (r *AnnotationRepository) CreateAnnotationTask(at models.AnnotationTask) error {
+func (r *AnnotationRepository) CreateAnnotationTask(at *m.AnnotationTask) error {
 	query := `
 		INSERT INTO annotation_task
 		(id, orig_doc_id, trans_doc_id, description, created_by, creation_date, last_update_date)
@@ -24,7 +24,7 @@ func (r *AnnotationRepository) CreateAnnotationTask(at models.AnnotationTask) er
 	return err
 }
 
-func (r *AnnotationRepository) CreateStructAnnotation(sa models.StructAnnotation) error {
+func (r *AnnotationRepository) CreateStructAnnotation(sa *m.StructAnnotation) error {
 	query := `
 		INSERT INTO struct_annotation
 		(id, task_id, orig_doc_id, beg_sent_no, end_sent_no, status, done_by)
@@ -34,7 +34,7 @@ func (r *AnnotationRepository) CreateStructAnnotation(sa models.StructAnnotation
 	return err
 }
 
-func (r *AnnotationRepository) CreateTermAnnotation(ta models.TermAnnotation) error {
+func (r *AnnotationRepository) CreateTermAnnotation(ta *m.TermAnnotation) error {
 	query := `
 		INSERT INTO term_annotation
 		(id, task_id, orig_doc_id, trans_doc_id, status, done_by)
@@ -44,7 +44,7 @@ func (r *AnnotationRepository) CreateTermAnnotation(ta models.TermAnnotation) er
 	return err
 }
 
-func (r *AnnotationRepository) CreateTermAnnotationPart(chicken models.TermAnnotationPart) error {
+func (r *AnnotationRepository) CreateTermAnnotationPart(chicken *m.TermAnnotationPart) error {
 	query := `
 		INSERT INTO term_annotation_part
 		(annot_id, part_no, orig_sent_no, trans_sent_no, beg_orig_token_no, end_orig_token_no, beg_trans_token_no, end_trans_token_no)

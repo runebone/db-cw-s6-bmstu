@@ -4,7 +4,7 @@ import (
 	"database/sql"
 
 	"github.com/google/uuid"
-	"github.com/runebone/db-cw-s6-bmstu/internal/domain/models"
+	m "github.com/runebone/db-cw-s6-bmstu/internal/domain/models"
 )
 
 type DocumentRepository struct {
@@ -15,7 +15,7 @@ func NewDocumentRepository(db *sql.DB) *DocumentRepository {
 	return &DocumentRepository{DB: db}
 }
 
-func (r *DocumentRepository) CreateDocument(d models.Document) error {
+func (r *DocumentRepository) CreateDocument(d *m.Document) error {
 	query := `
 		INSERT INTO document
 		(id, url, title, lang, orig_doc_id, uploaded_by, upload_date)
@@ -26,7 +26,7 @@ func (r *DocumentRepository) CreateDocument(d models.Document) error {
 }
 
 // XXX there should be a better place for that than document repository
-func (r *DocumentRepository) CreateSentence(s models.Sentence) error {
+func (r *DocumentRepository) CreateSentence(s *m.Sentence) error {
 	query := `
 		INSERT INTO sentence
 		(doc_id, sent_no, content)
@@ -36,7 +36,7 @@ func (r *DocumentRepository) CreateSentence(s models.Sentence) error {
 	return err
 }
 
-func (r *DocumentRepository) CreateToken(t models.Token) error {
+func (r *DocumentRepository) CreateToken(t *m.Token) error {
 	query := `
 		INSERT INTO token
 		(doc_id, sent_no, token_no, content)
