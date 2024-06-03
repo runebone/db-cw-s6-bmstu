@@ -73,5 +73,10 @@ func main() {
 
 	e.GET("/d/:id", documentHandler.GetDocumentText)
 
+	e.GET("/search", func(c echo.Context) error {
+		return c.Render(http.StatusOK, "search.html", nil)
+	})
+	e.POST("/search", documentHandler.GetDocumentsByContent)
+
 	e.Logger.Fatal(e.Start(":8080"))
 }

@@ -1,0 +1,11 @@
+<h1>Search</h1>
+<form action="/search" method="POST" hx-post="/search" hx-target="#results">
+    <label for="content">Text:</label>
+    <input type="text" id="content" name="content" required>
+    <br>
+    <button type="submit">Search</button>
+    <div id="results">
+    </div>
+    <div id="contents">
+    </div>
+</form>
