@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"database/sql"
+	"fmt"
 
 	"github.com/google/uuid"
 	m "github.com/runebone/db-cw-s6-bmstu/internal/domain/models"
@@ -72,5 +73,38 @@ func (r *DocumentRepository) GetDocumentText(doc_id uuid.UUID) (string, error) {
 		return "", err
 	}
 
+	fmt.Printf("\n\n %s \n\n", text)
+
 	return text, nil
+}
+
+func (r *DocumentRepository) GetDocumentsByContent(s string) ([]uuid.UUID, error) {
+	query := `
+		SELECT doc_id
+		FROM sentence
+		WHERE content
+		LIKE $1
+	`
+	rows, err := r.DB.Query(query, "%"+s+"%")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var docIDs []uuid.UUID
+	for rows.Next() {
+		var docID uuid.UUID
+		if err := rows.Scan(&docID); err != nil {
+			return nil, err
+		}
+		docIDs = append(docIDs, docID)
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+
+	// fmt.Printf("\n\n %s \n\n", docIDs)
+
+	return docIDs, nil
 }

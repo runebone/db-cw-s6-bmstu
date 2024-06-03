@@ -11,9 +11,9 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	_ "github.com/lib/pq"
-	"github.com/runebone/db-cw-s6-bmstu/internal/domain/handlers"
-	"github.com/runebone/db-cw-s6-bmstu/internal/domain/repositories"
-	"github.com/runebone/db-cw-s6-bmstu/internal/domain/services"
+	h "github.com/runebone/db-cw-s6-bmstu/internal/domain/handlers"
+	r "github.com/runebone/db-cw-s6-bmstu/internal/domain/repositories"
+	s "github.com/runebone/db-cw-s6-bmstu/internal/domain/services"
 )
 
 // var store = sessions.NewCookieStore([]byte("secret"))
@@ -47,13 +47,13 @@ func main() {
 	}
 	e.Renderer = t
 
-	userRepo := repositories.NewUserRepository(db)
-	userService := services.NewUserService(userRepo)
-	userHandler := handlers.NewUserHandler(userService)
+	userRepo := r.NewUserRepository(db)
+	userService := s.NewUserService(userRepo)
+	userHandler := h.NewUserHandler(userService)
 
-	// documentRepo := repositories.NewDocumentRepository(db)
-	// documentService := services.NewDocumentService(documentRepo)
-	// documentHandler := handlers.NewDocumentHandler(documentService)
+	documentRepo := r.NewDocumentRepository(db)
+	documentService := s.NewDocumentService(documentRepo)
+	documentHandler := h.NewDocumentHandler(documentService)
 
 	e.GET("/", func(c echo.Context) error {
 		return c.Render(http.StatusOK, "index.html", nil)
@@ -71,7 +71,7 @@ func main() {
 
 	e.GET("/profile", userHandler.ShowProfile)
 
-	// e.GET("/documents/:id", documentHandler.GetDocumentText)
+	e.GET("/d/:id", documentHandler.GetDocumentText)
 
 	e.Logger.Fatal(e.Start(":8080"))
 }
