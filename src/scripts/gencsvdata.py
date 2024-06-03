@@ -268,17 +268,18 @@ def gen_token(csv=TOKEN_CSV):
         ])
 
 if __name__ == "__main__":
-    for _ in range(100):
+    n = 1000
+    for _ in range(n):
         gen_user_data()
         gen_document()
         gen_author()
-    for _ in range(100):
+    for _ in range(n):
         gen_document_author()
         gen_annotation_task()
-    for _ in range(100):
+    for _ in range(n):
         gen_struct_annotation()
         gen_term_annotation()
-    for _ in range(100):
+    for _ in range(n):
         gen_term_annotation_part()
         gen_sentence()
         gen_token()
