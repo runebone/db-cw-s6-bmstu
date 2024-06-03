@@ -8,6 +8,8 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/go-redis/redis/v8"
+
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	_ "github.com/lib/pq"
@@ -47,13 +49,19 @@ func main() {
 	}
 	e.Renderer = t
 
+	cache := redis.NewClient(&redis.Options{
+		Addr:     "localhost:6379",
+		Password: "",
+		DB:       0,
+	})
+
 	userRepo := r.NewUserRepository(db)
 	userService := s.NewUserService(userRepo)
 	userHandler := h.NewUserHandler(userService)
 
 	documentRepo := r.NewDocumentRepository(db)
 	documentService := s.NewDocumentService(documentRepo)
-	documentHandler := h.NewDocumentHandler(documentService)
+	documentHandler := h.NewDocumentHandler(documentService, cache)
 
 	e.GET("/", func(c echo.Context) error {
 		return c.Render(http.StatusOK, "index.html", nil)

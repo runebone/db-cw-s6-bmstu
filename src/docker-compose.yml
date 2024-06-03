@@ -3,8 +3,8 @@ version: '3.8'
 services:
   db:
     image: postgres:alpine
+    container_name: psqldb
     volumes:
-      # - ./postgresql_data:/var/lib/postgresql/data
       - ./sql:/sql
       - ./csv:/csv
     environment:
@@ -17,3 +17,10 @@ services:
       # Mapping 8001 localhost port to port 5432 of container
       - 8001:5432
     restart: unless-stopped
+
+  keydb:
+    image: eqalpha/keydb:latest
+    container_name: keydb
+    ports:
+      - 6379:6379
+    command: ["keydb-server", "/etc/keydb/keydb.conf"]
