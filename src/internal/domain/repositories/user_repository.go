@@ -26,7 +26,7 @@ func (r *UserRepository) CreateUser(u *m.User) error {
 }
 
 func (r *UserRepository) GetUserByUsername(username m.Username) (*m.User, error) {
-	var u *m.User
+	u := &m.User{}
 	query := `
 		SELECT
 		id, username, email, pwd_hash, creation_date, last_update_date
@@ -42,7 +42,7 @@ func (r *UserRepository) GetUserByUsername(username m.Username) (*m.User, error)
 }
 
 func (r *UserRepository) GetUserByID(id uuid.UUID) (*m.User, error) {
-	var u *m.User
+	u := &m.User{}
 	query := `
 		SELECT
 		id, username, email, pwd_hash, creation_date, last_update_date

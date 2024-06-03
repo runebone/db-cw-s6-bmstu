@@ -4,6 +4,7 @@ go 1.21.4
 
 require (
 	github.com/google/uuid v1.6.0
+	github.com/gorilla/sessions v1.2.2
 	github.com/labstack/echo v3.3.10+incompatible
 	github.com/lib/pq v1.10.9
 	golang.org/x/crypto v0.23.0
@@ -11,6 +12,7 @@ require (
 
 require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
+	github.com/gorilla/securecookie v1.1.2 // indirect
 	github.com/labstack/gommon v0.4.2 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect

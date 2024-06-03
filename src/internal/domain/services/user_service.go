@@ -1,4 +1,4 @@
-package service
+package services
 
 import (
 	"errors"
@@ -8,6 +8,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+// XXX should I use UserRepo *r.UserRepositoryInterface instead like in Go mistake #5?
 type UserService struct {
 	UserRepo *r.UserRepository
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBCW</title>
+    <script src="https://unpkg.com/htmx.org/dist/htmx.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/" hx-get="/" hx-target="body">Home</a></li>
+                <li><a href="/profile" hx-get="/profile" hx-target="#main">Profile</a></li>
+                <li><a href="/login" hx-get="/login" hx-target="#main">Login</a></li>
+                <li><a href="/register" hx-get="/register" hx-target="#main">Register</a></li>
+                <li><a href="/hello" hx-get="/hello" hx-target="#main">Hello</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="main">
+    </div>
+    <footer>
+        <p>© 2024 Konstantin Runov IU7-64B Inc.</p>
+    </footer>
+</body>
+</html>

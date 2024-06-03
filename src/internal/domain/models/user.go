@@ -24,11 +24,12 @@ type Password string
 func NewUser(username Username, email Email, password Password) *User {
 	passwordHash, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	u := &User{
-		ID:           uuid.New(),
-		Username:     username,
-		Email:        email,
-		PasswordHash: Password(passwordHash),
-		CreationDate: time.Now(),
+		ID:             uuid.New(),
+		Username:       username,
+		Email:          email,
+		PasswordHash:   Password(passwordHash),
+		CreationDate:   time.Now(),
+		LastUpdateDate: time.Now(),
 	}
 	return u
 }
