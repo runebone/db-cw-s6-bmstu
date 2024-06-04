@@ -11,14 +11,16 @@ import (
 	s "github.com/runebone/db-cw-s6-bmstu/internal/domain/services"
 )
 
-var store = sessions.NewCookieStore([]byte("secret"))
-
 type UserHandler struct {
-	UserService *s.UserService
+	service *s.UserService
+	store   *sessions.CookieStore
 }
 
-func NewUserHandler(service *s.UserService) *UserHandler {
-	return &UserHandler{UserService: service}
+func NewUserHandler(service *s.UserService, store *sessions.CookieStore) *UserHandler {
+	return &UserHandler{
+		service: service,
+		store:   store,
+	}
 }
 
 func (h *UserHandler) ShowRegisterForm(c echo.Context) error {
@@ -30,7 +32,7 @@ func (h *UserHandler) RegisterUser(c echo.Context) error {
 	email := m.Email(c.FormValue("email"))
 	password := m.Password(c.FormValue("password"))
 
-	err := h.UserService.RegisterUser(username, email, password)
+	err := h.service.RegisterUser(username, email, password)
 	if err != nil {
 		return c.String(http.StatusInternalServerError, err.Error())
 	}
@@ -50,12 +52,12 @@ func (h *UserHandler) LoginUser(c echo.Context) error {
 	username := m.Username(c.FormValue("username"))
 	password := m.Password(c.FormValue("password"))
 
-	user, err := h.UserService.AuthenticateUser(username, password)
+	user, err := h.service.AuthenticateUser(username, password)
 	if err != nil {
 		return c.String(http.StatusUnauthorized, "Invalid credentials")
 	}
 
-	sess, _ := store.Get(c.Request(), "session")
+	sess, _ := h.store.Get(c.Request(), "session")
 	sess.Values["user_id"] = user.ID.String()
 	sess.Save(c.Request(), c.Response())
 
@@ -67,7 +69,7 @@ func (h *UserHandler) LoginUser(c echo.Context) error {
 }
 
 func (h *UserHandler) ShowProfile(c echo.Context) error {
-	sess, _ := store.Get(c.Request(), "session")
+	sess, _ := h.store.Get(c.Request(), "session")
 	userID, ok := sess.Values["user_id"].(string)
 	fmt.Printf("\nuserID: %s\n\n", userID)
 	if !ok {
@@ -79,7 +81,7 @@ func (h *UserHandler) ShowProfile(c echo.Context) error {
 		return c.String(http.StatusInternalServerError, "Invalid user ID")
 	}
 
-	user, err := h.UserService.UserRepo.GetUserByID(uid)
+	user, err := h.service.UserRepo.GetUserByID(uid)
 	if err != nil {
 		return c.String(http.StatusInternalServerError, err.Error())
 	}

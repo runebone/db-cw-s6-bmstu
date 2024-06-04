@@ -1,0 +1,21 @@
+<h1>Upload Document</h1>
+<form action="/d" method="POST" hx-post="/d" hx-target="#main">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required>
+    <br>
+    <label for="lang">Language:</label>
+    <select id="lang" name="lang">
+        <option value="ru">Russian</option>
+        <option value="en">English</option>
+        <option value="zh">Chinese</option>
+        <option value="ar">Arabic</option>
+        <option value="de">German</option>
+        <option value="it">Italian</option>
+        <option value="jp">Japanese</option>
+    </select>
+    <br>
+    <label for="orig">OrigDocID:</label>
+    <input type="text" id="orig" name="orig">
+    <br>
+    <button type="submit">Upload</button>
+</form>

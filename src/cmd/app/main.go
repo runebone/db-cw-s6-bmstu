@@ -9,6 +9,7 @@ import (
 	"net/http"
 
 	"github.com/go-redis/redis/v8"
+	"github.com/gorilla/sessions"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
@@ -17,8 +18,6 @@ import (
 	r "github.com/runebone/db-cw-s6-bmstu/internal/domain/repositories"
 	s "github.com/runebone/db-cw-s6-bmstu/internal/domain/services"
 )
-
-// var store = sessions.NewCookieStore([]byte("secret"))
 
 type Template struct {
 	tmpl *template.Template
@@ -55,13 +54,15 @@ func main() {
 		DB:       0,
 	})
 
+	store := sessions.NewCookieStore([]byte("secret"))
+
 	userRepo := r.NewUserRepository(db)
 	userService := s.NewUserService(userRepo)
-	userHandler := h.NewUserHandler(userService)
+	userHandler := h.NewUserHandler(userService, store)
 
 	documentRepo := r.NewDocumentRepository(db)
 	documentService := s.NewDocumentService(documentRepo)
-	documentHandler := h.NewDocumentHandler(documentService, cache)
+	documentHandler := h.NewDocumentHandler(documentService, cache, store)
 
 	e.GET("/", func(c echo.Context) error {
 		return c.Render(http.StatusOK, "index.html", nil)
@@ -80,6 +81,10 @@ func main() {
 	e.GET("/profile", userHandler.ShowProfile)
 
 	e.GET("/d/:id", documentHandler.GetDocumentText)
+	e.GET("/d", func(c echo.Context) error {
+		return c.Render(http.StatusOK, "upload-document.html", nil)
+	})
+	e.POST("/d", documentHandler.UploadDocument)
 
 	e.GET("/search", func(c echo.Context) error {
 		return c.Render(http.StatusOK, "search.html", nil)
