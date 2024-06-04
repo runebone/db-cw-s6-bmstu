@@ -1,8 +1,11 @@
+from faker import Faker
 from locust import HttpUser, TaskSet, task, between
+
+fake = Faker(["ru_RU"])
 
 class UserBehavior(TaskSet):
     @task(2) # Вес задачи - 2
-    def post_data(self):
+    def post_search(self):
         headers = {"Content-Type": "application/json"}
         payload = {
             "content": "a",
@@ -19,7 +22,7 @@ class UserBehavior(TaskSet):
 
     @task(1)
     def get_document(self):
-        document_id = "52a7a3e2-e086-47d7-80ef-3f10524d5b3a"
+        document_id = "41b9023a-77d4-4d4e-aa2c-8305b937443a"
         self.client.get(f"/d/{document_id}")
     
 class WebsiteUser(HttpUser):
