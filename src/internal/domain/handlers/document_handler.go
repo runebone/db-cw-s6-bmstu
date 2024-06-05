@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/go-redis/redis/v8"
+	keydb "github.com/go-redis/redis/v8"
 	"github.com/google/uuid"
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo"
@@ -19,11 +19,11 @@ var ctx = context.Background()
 
 type DocumentHandler struct {
 	service *s.DocumentService
-	cache   *redis.Client
+	cache   *keydb.Client
 	store   *sessions.CookieStore
 }
 
-func NewDocumentHandler(service *s.DocumentService, cache *redis.Client, store *sessions.CookieStore) *DocumentHandler {
+func NewDocumentHandler(service *s.DocumentService, cache *keydb.Client, store *sessions.CookieStore) *DocumentHandler {
 	return &DocumentHandler{
 		service: service,
 		cache:   cache,
@@ -33,12 +33,35 @@ func NewDocumentHandler(service *s.DocumentService, cache *redis.Client, store *
 
 func (h *DocumentHandler) GetDocumentText(c echo.Context) error {
 	documentID := c.Param("id")
+	useCache := false
 
-	cachedText, err := h.cache.Get(ctx, documentID).Result()
-	if err == redis.Nil {
+	if useCache {
+		cachedText, err := h.cache.Get(ctx, documentID).Result()
+		if err == keydb.Nil {
+			uid, err := uuid.Parse(documentID)
+			if err != nil {
+				return c.String(http.StatusBadRequest, "Invalid document ID - parse uuid")
+			}
+
+			text, err := h.service.GetDocumentText(uid)
+			if err != nil {
+				return c.String(http.StatusInternalServerError, err.Error())
+			}
+
+			err = h.cache.Set(ctx, documentID, text, 10*time.Minute).Err()
+			if err != nil {
+				return c.String(http.StatusInternalServerError, "Failed to cache document text")
+			}
+
+			return c.String(http.StatusOK, text)
+		} else if err != nil {
+			return c.String(http.StatusBadRequest, "Invalid document ID")
+		}
+		return c.String(http.StatusOK, cachedText)
+	} else {
 		uid, err := uuid.Parse(documentID)
 		if err != nil {
-			return c.String(http.StatusBadRequest, "Invalid document ID")
+			return c.String(http.StatusBadRequest, "Invalid document ID - parse uuid")
 		}
 
 		text, err := h.service.GetDocumentText(uid)
@@ -46,17 +69,8 @@ func (h *DocumentHandler) GetDocumentText(c echo.Context) error {
 			return c.String(http.StatusInternalServerError, err.Error())
 		}
 
-		err = h.cache.Set(ctx, documentID, text, 10*time.Minute).Err()
-		if err != nil {
-			return c.String(http.StatusInternalServerError, "Failed to cache document text")
-		}
-
 		return c.String(http.StatusOK, text)
-	} else if err != nil {
-		return c.String(http.StatusBadRequest, "Invalid document ID")
 	}
-
-	return c.String(http.StatusOK, cachedText)
 }
 
 func (h *DocumentHandler) GetDocumentsByContent(c echo.Context) error {

@@ -8,7 +8,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/go-redis/redis/v8"
+	keydb "github.com/go-redis/redis/v8"
 	"github.com/gorilla/sessions"
 
 	"github.com/labstack/echo"
@@ -48,7 +48,7 @@ func main() {
 	}
 	e.Renderer = t
 
-	cache := redis.NewClient(&redis.Options{
+	cache := keydb.NewClient(&keydb.Options{
 		Addr:     "localhost:6379",
 		Password: "",
 		DB:       0,
