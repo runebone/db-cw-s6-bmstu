@@ -142,7 +142,7 @@
 \begin{table}[H]
 \centering
 \caption{Ограничение целостности User}
-\begin{tabular}{|m{4cm}|m{3cm}|m{6cm}|}
+\begin{tabular}{|m{0.31\linewidth}|m{0.22\linewidth}|m{0.40\linewidth}|}
 \hline
 \textbf{Поле} & \textbf{Тип} & \textbf{Ограничение} \\ \hline
 id & UUID & первичный ключ \\ \hline
@@ -159,7 +159,8 @@ last\_update\_date & временная метка & не пустое знач�
 \begin{table}[H]
 \centering
 \caption{Ограничение целостности Document}
-\begin{tabular}{|m{3cm}|m{3cm}|m{6cm}|}
+% \begin{tabular}{|m{3cm}|m{3cm}|m{6cm}|}
+\begin{tabular}{|m{0.31\linewidth}|m{0.22\linewidth}|m{0.40\linewidth}|}
 \hline
 \textbf{Поле} & \textbf{Тип} & \textbf{Ограничение} \\ \hline
 id & UUID & первичный ключ \\ \hline
@@ -176,7 +177,8 @@ upload\_date & временная метка & не пустое значени�
 \begin{table}[H]
 \centering
 \caption{Ограничение целостности DocumentAuthor}
-\begin{tabular}{|m{3cm}|m{3cm}|m{6cm}|}
+% \begin{tabular}{|m{3cm}|m{3cm}|m{6cm}|}
+\begin{tabular}{|m{0.31\linewidth}|m{0.22\linewidth}|m{0.40\linewidth}|}
 \hline
 \textbf{Поле} & \textbf{Тип} & \textbf{Ограничение} \\ \hline
 doc\_id & UUID & первичный ключ, внешний ключ на поле id таблицы Document \\ \hline
@@ -188,7 +190,8 @@ author\_id & UUID & первичный ключ, внешний ключ на п
 \begin{table}[H]
 \centering
 \caption{Ограничение целостности Author}
-\begin{tabular}{|m{3cm}|m{3cm}|m{6cm}|}
+% \begin{tabular}{|m{3cm}|m{3cm}|m{6cm}|}
+\begin{tabular}{|m{0.31\linewidth}|m{0.22\linewidth}|m{0.40\linewidth}|}
 \hline
 \textbf{Поле} & \textbf{Тип} & \textbf{Ограничение} \\ \hline
 id & UUID & первичный ключ \\ \hline
@@ -204,7 +207,8 @@ creation\_date & временная метка & не пустое значен�
 \begin{table}[H]
 \centering
 \caption{Ограничение целостности AnnotationTask}
-\begin{tabular}{|m{4cm}|m{3cm}|m{6cm}|}
+% \begin{tabular}{|m{4cm}|m{3cm}|m{6cm}|}
+\begin{tabular}{|m{0.31\linewidth}|m{0.22\linewidth}|m{0.40\linewidth}|}
 \hline
 \textbf{Поле} & \textbf{Тип} & \textbf{Ограничение} \\ \hline
 id & UUID & первичный ключ \\ \hline
@@ -221,7 +225,8 @@ last\_update\_date & временная метка & не пустое знач�
 \begin{table}[H]
 \centering
 \caption{Ограничение целостности StructAnnotation}
-\begin{tabular}{|m{3cm}|m{3cm}|m{6cm}|}
+% \begin{tabular}{|m{3cm}|m{3cm}|m{6cm}|}
+\begin{tabular}{|m{0.31\linewidth}|m{0.22\linewidth}|m{0.40\linewidth}|}
 \hline
 \textbf{Поле} & \textbf{Тип} & \textbf{Ограничение} \\ \hline
 id & UUID & первичный ключ \\ \hline
@@ -238,7 +243,8 @@ done\_by & UUID & внешний ключ на поле id таблицы User, 
 \begin{table}[H]
 \centering
 \caption{Ограничение целостности TermAnnotation}
-\begin{tabular}{|m{3cm}|m{3cm}|m{6cm}|}
+% \begin{tabular}{|m{3cm}|m{3cm}|m{6cm}|}
+\begin{tabular}{|m{0.31\linewidth}|m{0.22\linewidth}|m{0.40\linewidth}|}
 \hline
 \textbf{Поле} & \textbf{Тип} & \textbf{Ограничение} \\ \hline
 id & UUID & первичный ключ \\ \hline
@@ -254,7 +260,8 @@ done\_by & UUID & внешний ключ на поле id таблицы User, 
 \begin{table}[H]
 \centering
 \caption{Ограничение целостности TermAnnotationPart}
-\begin{tabular}{|m{5cm}|m{3cm}|m{6cm}|}
+% \begin{tabular}{|m{5cm}|m{3cm}|m{6cm}|}
+\begin{tabular}{|m{0.31\linewidth}|m{0.22\linewidth}|m{0.40\linewidth}|}
 \hline
 \textbf{Поле} & \textbf{Тип} & \textbf{Ограничение} \\ \hline
 annot\_id & UUID & первичный ключ, внешний ключ на поле id таблицы TermAnnotation \\ \hline
@@ -272,7 +279,8 @@ end\_trans\_token\_no & целое число & не пустое значени
 \begin{table}[H]
 \centering
 \caption{Ограничение целостности Sentence}
-\begin{tabular}{|m{3cm}|m{3cm}|m{6cm}|}
+% \begin{tabular}{|m{3cm}|m{3cm}|m{6cm}|}
+\begin{tabular}{|m{0.31\linewidth}|m{0.22\linewidth}|m{0.40\linewidth}|}
 \hline
 \textbf{Поле} & \textbf{Тип} & \textbf{Ограничение} \\ \hline
 doc\_id & UUID & первичный ключ, внешний ключ на поле id таблицы Document \\ \hline
@@ -285,7 +293,8 @@ content & строка & не пустое значение \\ \hline
 \begin{table}[H]
 \centering
 \caption{Ограничение целостности Token}
-\begin{tabular}{|m{3cm}|m{3cm}|m{6cm}|}
+% \begin{tabular}{|m{3cm}|m{3cm}|m{6cm}|}
+\begin{tabular}{|m{0.31\linewidth}|m{0.22\linewidth}|m{0.40\linewidth}|}
 \hline
 \textbf{Поле} & \textbf{Тип} & \textbf{Ограничение} \\ \hline
 doc\_id & UUID & первичный ключ, внешний ключ на поле id таблицы Document \\ \hline

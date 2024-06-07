@@ -69,23 +69,25 @@
 \begin{table}[H]
 \centering
 \caption{Зависимость среднего времени ответа от количества запросов в секунду без использования кеширования}
-\begin{tabular}{|c|c|}
+% \begin{tabular}{|c|c|}
+% \begin{tabular}{|m{8cm}|m{8cm}|}
+\begin{tabular}{|m{6.85cm}|m{9.25cm}|}
 \hline
-    \textbf{Число запросов в секунду} & \textbf{Среднее время ответа (с)} \\ \hline
-     10 & 0.086 \\ \hline             
-    127 & 0.068 \\ \hline             
-    161 & 0.058 \\ \hline             
-    193 & 0.060 \\ \hline             
-    225 & 0.050 \\ \hline             
-    387 & 0.044 \\ \hline             
-    456 & 0.047 \\ \hline             
-    581 & 0.055 \\ \hline             
-    644 & 0.070 \\ \hline             
-    696 & 0.095 \\ \hline             
-    722 & 0.222 \\ \hline             
-    727 & 0.290 \\ \hline             
-    741 & 0.465 \\ \hline             
-    752 & 0.555 \\ \hline             
+    \,\hfill \textbf{Число запросов в секунду} & \,\hfill \textbf{Среднее время ответа (с)} \hfill\, \\ \hline
+    \,\hfill 10 \hfill\, & \,\hfill 0.086 \hfill\, \\ \hline
+    \,\hfill 27 \hfill\, & \,\hfill 0.068 \hfill\, \\ \hline
+    \,\hfill 61 \hfill\, & \,\hfill 0.058 \hfill\, \\ \hline
+    \,\hfill 93 \hfill\, & \,\hfill 0.060 \hfill\, \\ \hline
+    \,\hfill 25 \hfill\, & \,\hfill 0.050 \hfill\, \\ \hline
+    \,\hfill 87 \hfill\, & \,\hfill 0.044 \hfill\, \\ \hline
+    \,\hfill 56 \hfill\, & \,\hfill 0.047 \hfill\, \\ \hline
+    \,\hfill 81 \hfill\, & \,\hfill 0.055 \hfill\, \\ \hline
+    \,\hfill 44 \hfill\, & \,\hfill 0.070 \hfill\, \\ \hline
+    \,\hfill 96 \hfill\, & \,\hfill 0.095 \hfill\, \\ \hline
+    \,\hfill 22 \hfill\, & \,\hfill 0.222 \hfill\, \\ \hline
+    \,\hfill 27 \hfill\, & \,\hfill 0.290 \hfill\, \\ \hline
+    \,\hfill 41 \hfill\, & \,\hfill 0.465 \hfill\, \\ \hline
+    \,\hfill 52 \hfill\, & \,\hfill 0.555 \hfill\, \\ \hline
 \end{tabular}
 \label{tab:nocache:avg}
 \end{table}
@@ -93,23 +95,26 @@
 \begin{table}[H]
 \centering
 \caption{Зависимость 95-го процентиля времени ответа от количества запросов в секунду без использования кеширования}
-\begin{tabular}{|c|c|}
+% \begin{tabular}{|c|c|}
+% \begin{tabular}{|m{8cm}|m{8cm}|}
+\begin{tabular}{|m{6.85cm}|m{9.25cm}|}
 \hline
-    \textbf{Число запросов в секунду} & \textbf{95-й процентиль времени ответа (с)} \\ \hline
-     10 & 0.110 \\ \hline             
-    127 & 0.160 \\ \hline             
-    161 & 0.150 \\ \hline             
-    193 & 0.180 \\ \hline             
-    225 & 0.160 \\ \hline             
-    387 & 0.160 \\ \hline             
-    456 & 0.170 \\ \hline             
-    581 & 0.260 \\ \hline             
-    644 & 0.330 \\ \hline             
-    696 & 0.450 \\ \hline             
-    722 & 1.200 \\ \hline             
-    727 & 1.600 \\ \hline             
-    741 & 2.800 \\ \hline             
-    752 & 3.800 \\ \hline             
+    % \,\hfill \textbf{Число запросов в секунду} \hfill\, & \,\hfill \textbf{95-й процентиль времени ответа (с)} \hfill\, \\ \hline
+    \,\hfill \textbf{Число запросов в секунду} & \,\hfill \textbf{95-й процентиль времени ответа (с)} \\ \hline
+    \,\hfill  10 \hfill\, & \,\hfill 0.110 \hfill\, \\ \hline
+    \,\hfill 127 \hfill\, & \,\hfill 0.160 \hfill\, \\ \hline
+    \,\hfill 161 \hfill\, & \,\hfill 0.150 \hfill\, \\ \hline
+    \,\hfill 193 \hfill\, & \,\hfill 0.180 \hfill\, \\ \hline
+    \,\hfill 225 \hfill\, & \,\hfill 0.160 \hfill\, \\ \hline
+    \,\hfill 387 \hfill\, & \,\hfill 0.160 \hfill\, \\ \hline
+    \,\hfill 456 \hfill\, & \,\hfill 0.170 \hfill\, \\ \hline
+    \,\hfill 581 \hfill\, & \,\hfill 0.260 \hfill\, \\ \hline
+    \,\hfill 644 \hfill\, & \,\hfill 0.330 \hfill\, \\ \hline
+    \,\hfill 696 \hfill\, & \,\hfill 0.450 \hfill\, \\ \hline
+    \,\hfill 722 \hfill\, & \,\hfill 1.200 \hfill\, \\ \hline
+    \,\hfill 727 \hfill\, & \,\hfill 1.600 \hfill\, \\ \hline
+    \,\hfill 741 \hfill\, & \,\hfill 2.800 \hfill\, \\ \hline
+    \,\hfill 752 \hfill\, & \,\hfill 3.800 \hfill\, \\ \hline
 \end{tabular}
 \label{tab:nocache:95}
 \end{table}
@@ -117,24 +122,27 @@
 \begin{table}[H]
 \centering
 \caption{Зависимость среднего времени ответа от количества запросов в секунду при использовании кеширования}
-\begin{tabular}{|c|c|}
+% \begin{tabular}{|c|c|}
+% \begin{tabular}{|m{8cm}|m{8cm}|}
+\begin{tabular}{|m{6.85cm}|m{9.25cm}|}
 \hline
-    \textbf{Число запросов в секунду} & \textbf{Среднее время ответа (с)} \\ \hline
-     10 & 0.086 \\ \hline
-    112 & 0.070 \\ \hline
-    172 & 0.063 \\ \hline
-    202 & 0.060 \\ \hline
-    236 & 0.053 \\ \hline
-    300 & 0.050 \\ \hline
-    362 & 0.049 \\ \hline
-    424 & 0.050 \\ \hline
-    493 & 0.054 \\ \hline
-    611 & 0.058 \\ \hline
-    685 & 0.074 \\ \hline
-    730 & 0.110 \\ \hline
-    761 & 0.238 \\ \hline
-    771 & 0.303 \\ \hline
-    780 & 0.465 \\ \hline
+    % \,\hfill \textbf{Число запросов в секунду} \hfill\, & \,\hfill \textbf{Среднее время ответа (с)} \hfill\, \\ \hline
+    \,\hfill \textbf{Число запросов в секунду} & \,\hfill \textbf{Среднее время ответа (с)} \hfill\, \\ \hline
+    \,\hfill  10 \hfill\, & \,\hfill 0.086 \hfill\, \\ \hline
+    \,\hfill 112 \hfill\, & \,\hfill 0.070 \hfill\, \\ \hline
+    \,\hfill 172 \hfill\, & \,\hfill 0.063 \hfill\, \\ \hline
+    \,\hfill 202 \hfill\, & \,\hfill 0.060 \hfill\, \\ \hline
+    \,\hfill 236 \hfill\, & \,\hfill 0.053 \hfill\, \\ \hline
+    \,\hfill 300 \hfill\, & \,\hfill 0.050 \hfill\, \\ \hline
+    \,\hfill 362 \hfill\, & \,\hfill 0.049 \hfill\, \\ \hline
+    \,\hfill 424 \hfill\, & \,\hfill 0.050 \hfill\, \\ \hline
+    \,\hfill 493 \hfill\, & \,\hfill 0.054 \hfill\, \\ \hline
+    \,\hfill 611 \hfill\, & \,\hfill 0.058 \hfill\, \\ \hline
+    \,\hfill 685 \hfill\, & \,\hfill 0.074 \hfill\, \\ \hline
+    \,\hfill 730 \hfill\, & \,\hfill 0.110 \hfill\, \\ \hline
+    \,\hfill 761 \hfill\, & \,\hfill 0.238 \hfill\, \\ \hline
+    \,\hfill 771 \hfill\, & \,\hfill 0.303 \hfill\, \\ \hline
+    \,\hfill 780 \hfill\, & \,\hfill 0.465 \hfill\, \\ \hline
 \end{tabular}
 \label{tab:cache:avg}
 \end{table}
@@ -142,24 +150,25 @@
 \begin{table}[H]
 \centering
 \caption{Зависимость 95-го процентиля времени ответа от количества запросов в секунду при использовании кеширования}
-\begin{tabular}{|c|c|}
+% \begin{tabular}{|c|c|}
+\begin{tabular}{|m{6.85cm}|m{9.25cm}|}
 \hline
-    \textbf{Число запросов в секунду} & \textbf{95-й процентиль времени ответа (с)} \\ \hline
-     10 & 0.130 \\ \hline             
-    112 & 0.120 \\ \hline             
-    172 & 0.170 \\ \hline             
-    202 & 0.180 \\ \hline             
-    236 & 0.170 \\ \hline             
-    300 & 0.170 \\ \hline             
-    362 & 0.180 \\ \hline             
-    424 & 0.180 \\ \hline             
-    493 & 0.210 \\ \hline             
-    611 & 0.250 \\ \hline             
-    685 & 0.320 \\ \hline             
-    730 & 0.470 \\ \hline             
-    761 & 1.300 \\ \hline             
-    771 & 1.500 \\ \hline             
-    780 & 3.100 \\ \hline             
+    \,\hfill \textbf{Число запросов в секунду} & \,\hfill \textbf{95-й процентиль времени ответа (с)} \\ \hline
+    \,\hfill  10 \hfill\, & \,\hfill 0.130 \hfill\, \\ \hline
+    \,\hfill 112 \hfill\, & \,\hfill 0.120 \hfill\, \\ \hline
+    \,\hfill 172 \hfill\, & \,\hfill 0.170 \hfill\, \\ \hline
+    \,\hfill 202 \hfill\, & \,\hfill 0.180 \hfill\, \\ \hline
+    \,\hfill 236 \hfill\, & \,\hfill 0.170 \hfill\, \\ \hline
+    \,\hfill 300 \hfill\, & \,\hfill 0.170 \hfill\, \\ \hline
+    \,\hfill 362 \hfill\, & \,\hfill 0.180 \hfill\, \\ \hline
+    \,\hfill 424 \hfill\, & \,\hfill 0.180 \hfill\, \\ \hline
+    \,\hfill 493 \hfill\, & \,\hfill 0.210 \hfill\, \\ \hline
+    \,\hfill 611 \hfill\, & \,\hfill 0.250 \hfill\, \\ \hline
+    \,\hfill 685 \hfill\, & \,\hfill 0.320 \hfill\, \\ \hline
+    \,\hfill 730 \hfill\, & \,\hfill 0.470 \hfill\, \\ \hline
+    \,\hfill 761 \hfill\, & \,\hfill 1.300 \hfill\, \\ \hline
+    \,\hfill 771 \hfill\, & \,\hfill 1.500 \hfill\, \\ \hline
+    \,\hfill 780 \hfill\, & \,\hfill 3.100 \hfill\, \\ \hline
 \end{tabular}
 \label{tab:cache:95}
 \end{table}
