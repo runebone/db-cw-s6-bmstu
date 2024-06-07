@@ -2,7 +2,7 @@ PDF = index.pdf
 MAIN = main
 FLAGS = -shell-escape
 CC = pdflatex
-SHIT = *.aux *.log *.out *.toc *.bbl *.blg
+SHIT = *.aux *.log *.out *.toc *.bbl *.blg *.snm *.nav
 
 all: bib
 
@@ -36,5 +36,11 @@ clean:
 	-rm  $(SHIT) > /dev/null
 	-cd report && rm $(SHIT) > /dev/null
 	rm -rf out
+
+pres: presentation.tex
+	make resurrect
+	-$(CC) $(FLAGS) $< #> /dev/null
+	-$(CC) $(FLAGS) $<  > /dev/null
+	make moveout
 
 .PHONY: all, clean, bib, moveout, resurrect
